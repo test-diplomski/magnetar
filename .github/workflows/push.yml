@@ -11,12 +11,12 @@ jobs:
 
       steps:
         - name: Check out code
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
           with:
             repository: 'test-diplomski/gravity'
 
         - name: Set up Go
-          uses: actions/setup-go@v4
+          uses: actions/setup-go@v5
           with:
             go-version: '1.22.3'
 
