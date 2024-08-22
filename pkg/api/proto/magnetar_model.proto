@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option go_package="github.com/c12s/magnetar/pkg/api";
+package proto;
+
+message Node {
+  string id = 1;
+  string org = 2;
+  repeated Label labels = 3;
+  map<string, double> resources = 4;
+  string bindAddress = 5;
+}
+
+message Label {
+  string key = 1;
+  Value value = 2;
+}
+
+message BoolLabel {
+  string key = 1;
+  bool value = 2;
+}
+
+message Float64Label {
+  string key = 1;
+  double value = 2;
+}
+
+message StringLabel {
+  string key = 1;
+  string value = 2;
+}
+
+message Value {
+  enum ValueTYpe {
+    Bool = 0;
+    Float64 = 1;
+    String = 2;
+  };
+  ValueTYpe type = 1;
+  bytes marshalled = 2;
+}
+
+message BoolValue {
+  bool value = 1;
+}
+
+message Float64Value {
+  double value = 1;
+}
+
+message StringValue {
+  string value = 1;
+}
+
+message NodeStringified {
+  string id = 1;
+  string org = 2;
+  repeated LabelStringified labels = 3;
+  map<string, double> resources = 4;
+}
+
+message LabelStringified {
+  string key = 1;
+  string value = 2;
+}

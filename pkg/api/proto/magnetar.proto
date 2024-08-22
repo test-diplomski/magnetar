@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+option go_package="github.com/c12s/magnetar/pkg/api";
+package proto;
+
+import "magnetar_model.proto";
+
+service Magnetar {
+  rpc GetFromNodePool(GetFromNodePoolReq) returns (GetFromNodePoolResp) {}
+  rpc GetFromOrg(GetFromOrgReq) returns (GetFromOrgResp) {}
+  rpc ClaimOwnership(ClaimOwnershipReq) returns (ClaimOwnershipResp) {}
+  rpc ListNodePool(ListNodePoolReq) returns (ListNodePoolResp) {}
+  rpc ListOrgOwnedNodes(ListOrgOwnedNodesReq) returns (ListOrgOwnedNodesResp) {}
+  rpc QueryNodePool(QueryNodePoolReq) returns (QueryNodePoolResp) {}
+  rpc QueryOrgOwnedNodes(QueryOrgOwnedNodesReq) returns (QueryOrgOwnedNodesResp) {}
+  rpc PutBoolLabel(PutBoolLabelReq) returns (PutLabelResp) {}
+  rpc PutFloat64Label(PutFloat64LabelReq) returns (PutLabelResp) {}
+  rpc PutStringLabel(PutStringLabelReq) returns (PutLabelResp) {}
+  rpc DeleteLabel(DeleteLabelReq) returns (DeleteLabelResp) {}
+  rpc ListAllNodes(ListAllNodesReq) returns (ListAllNodesResp) {}
+}
+
+message GetFromNodePoolReq {
+  string nodeId = 1;
+}
+
+message GetFromNodePoolResp {
+  NodeStringified node = 1;
+}
+
+message GetFromOrgReq {
+  string nodeId = 1;
+  string org = 2;
+}
+
+message GetFromOrgResp {
+  NodeStringified node = 1;
+}
+
+message ClaimOwnershipReq {
+  repeated Selector query = 1;
+  string org = 2;
+}
+
+message ClaimOwnershipResp {
+  repeated NodeStringified node = 1;
+}
+
+message ListAllNodesReq { }
+
+message ListAllNodesResp {
+  repeated NodeStringified nodes = 1;
+}
+
+message ListNodePoolReq { }
+
+message ListNodePoolResp {
+  repeated NodeStringified nodes = 1;
+}
+
+message ListOrgOwnedNodesReq {
+  string org = 1;
+}
+
+message ListOrgOwnedNodesResp {
+  repeated NodeStringified nodes = 1;
+}
+
+message Selector {
+  string labelKey = 3;
+  string shouldBe = 2;
+  string value = 1;
+}
+
+message QueryNodePoolReq {
+  repeated Selector query = 1;
+}
+
+message QueryNodePoolResp {
+  repeated NodeStringified nodes = 1;
+}
+
+message QueryOrgOwnedNodesReq {
+  repeated Selector query = 1;
+  string org = 2;
+}
+
+message QueryOrgOwnedNodesResp {
+  repeated NodeStringified nodes = 1;
+}
+
+message PutBoolLabelReq {
+  string nodeId = 1;
+  BoolLabel label = 2;
+  string org = 3;
+}
+
+message PutFloat64LabelReq {
+  string nodeId = 1;
+  Float64Label label = 2;
+  string org = 3;
+}
+
+message PutStringLabelReq {
+  string nodeId = 1;
+  StringLabel label = 2;
+  string org = 3;
+}
+
+message PutLabelResp {
+  NodeStringified node = 1;
+}
+
+message DeleteLabelReq {
+  string nodeId = 1;
+  string labelKey = 2;
+  string org = 3;
+}
+
+message DeleteLabelResp {
+  NodeStringified node = 1;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package="github.com/c12s/magnetar/pkg/api";
+package proto;
+
+import "magnetar_model.proto";
+
+message RegistrationReq {
+  repeated Label labels = 1;
+  map<string, double> resources = 2;
+  string bindAddress = 3;
+}
+
+message RegistrationResp {
+  string NodeId = 1;
+}
