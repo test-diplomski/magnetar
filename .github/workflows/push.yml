@@ -13,7 +13,7 @@ jobs:
         - name: Check out main repository
           uses: actions/checkout@v4
           
-        - name: Check out code
+        - name: Check additional repo
           uses: actions/checkout@v4
           with:
             repository: 'test-diplomski/gravity'
@@ -21,6 +21,15 @@ jobs:
 
         - name: Move gravity to parent directory
           run: mv gravity ../gravity
+
+        - name: Check additional repo
+          uses: actions/checkout@v4
+          with:
+            repository: 'test-diplomski/meridian'
+            path: 'meridian'
+
+        - name: Move meridian to parent directory
+          run: mv meridian ../meridian
           
         - name: Set up Go
           uses: actions/setup-go@v5
