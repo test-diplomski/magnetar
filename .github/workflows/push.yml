@@ -58,6 +58,7 @@ jobs:
   # docker:
   #   runs-on: ubuntu-latest
   #   needs: go-ci
+  #   if: github.repository == 'test-diplomski/magnetar'
 
   #   steps:
   #     - name: Set up QEMU
