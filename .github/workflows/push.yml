@@ -20,7 +20,7 @@ jobs:
           run: git clone https://github.com/test-diplomski/gravity.git
 
         - name: Move back to repository directory
-          run: cd magnetar
+          run: cd -
 
         - name: Set up Go
           uses: actions/setup-go@v4
