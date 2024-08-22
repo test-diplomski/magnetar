@@ -13,8 +13,14 @@ jobs:
         - name: Check out code
           uses: actions/checkout@v3
 
-        - name: Clone dependent microservice
+        - name: Move to parent directory
+          run: cd ..
+
+        - name: Clone gravity repository
           run: git clone https://github.com/test-diplomski/gravity.git
+
+        - name: Move back to repository directory
+          run: cd magnetar
 
         - name: Set up Go
           uses: actions/setup-go@v4
