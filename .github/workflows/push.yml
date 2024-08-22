@@ -17,6 +17,7 @@ jobs:
           uses: actions/checkout@v4
           with:
             repository: 'test-diplomski/gravity'
+            path: 'gravity'
 
         - name: Set up Go
           uses: actions/setup-go@v5
